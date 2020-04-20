@@ -9,9 +9,9 @@ import {
 } from 'react-native';
 import {AsyncStorage} from 'react-native';
 import Modal from 'react-native-modal';
-import Homeheading from "../components/homeHeading.js";
+import Homeheading from "../components/HomeHeading.js";
 import { FlatList } from 'react-native-gesture-handler';
-const GLOBAL = require('../Global');
+const GLOBAL = require('../../Global');
 
 export default class Loginscreen extends Component {
     state={

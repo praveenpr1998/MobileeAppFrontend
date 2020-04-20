@@ -1,11 +1,11 @@
 import 'react-native-gesture-handler';
 import React, { useState } from 'react';
-import HomeScreen from "../pages/homeScreen.js";
-import LoginScreen from "../pages/loginScreen.js";
-import SignupScreen from "../pages/signupScreen.js";
+import HomeScreen from "../src/Screens/HomeScreen.js";
+import LoginScreen from "../src/Screens/LoginScreen.js";
+import SignupScreen from "../src/Screens/SignupScreen.js";
 import {  createStackNavigator } from 'react-navigation-stack';
 import {  createAppContainer,createSwitchNavigator } from 'react-navigation';
-import Heading from "../components/homeNav.js";
+import Heading from "../src/components/HomeNav.js";
 
 const StackNavigator=createStackNavigator({
     HomeScreen: {

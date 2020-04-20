@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Image, View, Text, AsyncStorage,StyleSheet } from 'react-native';
 import AnimatedLoader from "react-native-animated-loader";
 
-export default class Homescreen extends Component {
+export default class HomeScreen extends Component {
     state={
         visible:true
     };

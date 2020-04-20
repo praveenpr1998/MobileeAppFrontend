@@ -14,8 +14,8 @@ import {
 import  Ionicons  from 'react-native-vector-icons/Ionicons';
 import  AntDesign  from 'react-native-vector-icons/AntDesign';
 import {AsyncStorage} from 'react-native';
-import Homeheading from "../components/homeHeading.js";
-const GLOBAL = require('../Global');
+import Homeheading from "../components/HomeHeading.js";
+const GLOBAL = require('../../Global');
 
   export default class cartPage extends Component{
       constructor(props) {

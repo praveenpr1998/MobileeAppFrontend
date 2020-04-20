@@ -13,8 +13,8 @@ import { Card } from 'react-native-elements';
 import {AsyncStorage} from 'react-native';
 import { SearchBar } from 'react-native-elements';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import Homeheading from "../components/homeHeading.js";
-const GLOBAL = require('../Global');
+import Homeheading from "../components/HomeHeading.js";
+const GLOBAL = require('../../Global');
 
 export default class productsPage extends Component{
     state={

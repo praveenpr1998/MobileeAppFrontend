@@ -1,8 +1,8 @@
 import 'react-native-gesture-handler';
 
 import {  createAppContainer,createSwitchNavigator } from 'react-navigation';
-import StackNav from "./stackNavigator.js";
-import DrawerNav from "./drawerNavigator.js";
+import StackNav from "./StackNavigator.js";
+import DrawerNav from "./DrawerNavigator.js";
 
 const AppNavigator = createSwitchNavigator({
     Auth:StackNav,

@@ -4,10 +4,10 @@ import { StyleSheet, TouchableOpacity,Image,Button, View, Text,ScrollView,SafeAr
 import  MaterialCommunityIcons  from 'react-native-vector-icons/MaterialCommunityIcons';
 import  AntDesign  from 'react-native-vector-icons/AntDesign';
 
-import Home from "../pages/productsPage.js";
-import cartPage from "../pages/cartPage.js";
-import Login from "../pages/loginScreen.js";
-import MyOrders from "../pages/MyOrders.js";
+import Home from "../src/Screens/ProductsPage.js";
+import cartPage from "../src/Screens/CartPage.js";
+import Login from "../src/Screens/LoginScreen.js";
+import MyOrders from "../src/Screens/MyOrders.js";
 import { Avatar } from 'react-native-elements';
 
 import { createDrawerNavigator } from 'react-navigation-drawer';
@@ -17,14 +17,14 @@ const GLOBAL = require('../Global');
 
 const resetAction = StackActions.reset({
   index: 0,
-  actions: [NavigationActions.navigate({ routeName: 'Login' })],
+  actions: [NavigationActions.navigate({ routeName: 'LoginScreen' })],
 });
 
 //let user -- to store the username for  displaying in drawer navigator
 let user;
 
  async function findname (){
-   
+
    fetch(GLOBAL.BASE_URL+"users/finduser/",{
       method:"POST",
       body:JSON.stringify({userid:await AsyncStorage.getItem("userid")}),
@@ -33,18 +33,18 @@ let user;
    .then(
      (result) => {
         user=result;
-       }) 
+       })
 }
 const DrawerWithLogoutButton=(props)=>{
     {findname()}
     return(
-      
+
         <ScrollView contentContainerStyle={{flex: 1,  flexDirection: 'column', justifyContent: 'space-between' }}>
           <SafeAreaView forceInset={{ top: 'always', horizontal: 'never' }}>
             <View style={{height:130,paddingLeft:20,paddingTop:20,flexDirection:'row',backgroundColor:'#d3f4ff'}}>
               <Avatar size="large" rounded icon={{ name: 'home' }} />
               <Text style={styles.username}>{user}</Text>
-              <TouchableOpacity onPress={()=>{props.navigation.closeDrawer()}} style={{paddingLeft:40,paddingBottom:40}}>           
+              <TouchableOpacity onPress={()=>{props.navigation.closeDrawer()}} style={{paddingLeft:40,paddingBottom:40}}>
                    <AntDesign name="closesquare" size={32}   color="black" />
                </TouchableOpacity>
             </View>

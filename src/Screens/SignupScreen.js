@@ -10,9 +10,9 @@ import  MaterialIcons  from 'react-native-vector-icons/MaterialIcons';
 import  Entypo  from 'react-native-vector-icons/Entypo';
 import  EvilIcons  from 'react-native-vector-icons/EvilIcons';
 import {AsyncStorage} from 'react-native';
-const GLOBAL = require('../Global');
+const GLOBAL = require('../../Global');
 
-export default class Signupscreen extends Component {
+export default class SignupScreen extends Component {
     constructor(props) {
         super(props);
         this.state = {
