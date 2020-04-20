@@ -42,9 +42,7 @@ export default class Signupscreen extends Component {
       .then(
       async(result) => {
         if(result.message==="Success"){
-          AsyncStorage.setItem("secret",result.secret);
-          AsyncStorage.setItem("email",result.email);
-          this.props.navigation.navigate('Verification');
+          this.props.navigation.navigate('Homee');
         }
         else if("Exists"){
           alert("Email Already exists");
