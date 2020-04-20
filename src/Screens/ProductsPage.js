@@ -127,7 +127,6 @@ export default class productsPage extends Component{
         <View style={{flex:1}}>
           <Homeheading navigation={this.props.navigation}/>
             {this.displayCategories()}
-            
         <View style={{flex:1}}>
           <FlatList numColumns={2} 
             keyExtractor={(item)=>item.id} 
@@ -147,8 +146,7 @@ export default class productsPage extends Component{
                         <Button title='add'color="red" onPress={()=>{this.addItems(item)}}/></TouchableOpacity></View>
                   </Card>
           )} />
-        </View>
-          
+        </View>     
       </View>
       );
     }
