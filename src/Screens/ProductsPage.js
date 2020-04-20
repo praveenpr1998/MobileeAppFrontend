@@ -30,6 +30,7 @@ export default class productsPage extends Component{
         this.setState({ selectedItems });
     };
 
+    // Component Did Mount Life-cycle method
     componentDidMount(){
     fetch(GLOBAL.BASE_URL+"products/")
         .then(res => res.json())
@@ -56,6 +57,7 @@ export default class productsPage extends Component{
                 });
     }
 
+    // Method to add items to the Cart
     async addItems(e){
         fetch(GLOBAL.BASE_URL+"cartitems/add/",{
             method:"POST",
@@ -79,7 +81,7 @@ export default class productsPage extends Component{
                 });
     }
 
-    // method that displays the categories list
+    // Method that displays the categories list
     displayCategories(){
         const { selectedItems } = this.state;
         return(
@@ -116,7 +118,6 @@ export default class productsPage extends Component{
             </View>
         )
     }
-
 
     render(){
         // filtering the products if the users searches for any products in search bar
@@ -161,6 +162,7 @@ export default class productsPage extends Component{
         );
     }
 }
+
 const styles = StyleSheet.create({
     container: { flexDirection:'row'},
     cardbox:{},

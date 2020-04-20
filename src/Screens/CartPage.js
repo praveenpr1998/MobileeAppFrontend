@@ -29,8 +29,7 @@ const GLOBAL = require('../../Global');
           }
       }
 
-        //remove item in cart by making req to server with product id and userid
-
+      //remove item in cart by making req to server with product id and userid
       async removeItem(id){
           fetch(GLOBAL.BASE_URL+"cartitems/remove/",{
               method:"POST",
@@ -59,7 +58,6 @@ const GLOBAL = require('../../Global');
               });
       }
 
-
       //decrement item in cart by making req to server with product id and userid
       async decrement(id){
           fetch(GLOBAL.BASE_URL+"cartitems/decrement/",{
@@ -73,7 +71,6 @@ const GLOBAL = require('../../Global');
                       this.totalAmount()
                   });
       }
-
 
       //getting the totalAmount of cart
       async totalAmount(){
@@ -183,11 +180,9 @@ const GLOBAL = require('../../Global');
                           )
                       }
               });
-
-
       }
 
-      //diplaying the cartitems of user
+      // displaying the cartitems of user
       displayCart(){
           return(
               <View style={{flex:1}}>

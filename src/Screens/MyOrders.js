@@ -130,7 +130,6 @@ export default class Loginscreen extends Component {
     }
 }
 
-
 const styles = StyleSheet.create({
     ordertext:{
         fontSize:15 ,

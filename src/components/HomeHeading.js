@@ -5,7 +5,6 @@ import EvilIcons from 'react-native-vector-icons/EvilIcons';
 import Entypo from 'react-native-vector-icons/Entypo';
 
 export default class homeHeading extends Component {
-
     render() {
         return (
             <View style={styles.header}>
@@ -24,6 +23,7 @@ export default class homeHeading extends Component {
         );
     }
 }
+
 const styles=StyleSheet.create({
     header:{
         height:'8%',
@@ -35,6 +35,5 @@ const styles=StyleSheet.create({
         paddingLeft:10,
         fontWeight:'bold',
         fontFamily:'Teko-Bold'
-
     },
 });

@@ -22,7 +22,7 @@ export default class SignupScreen extends Component {
         }
     }
 
-    // User Sign-up method
+    // Method to handle User Sign-up
     onClickListener = (viewId) => {
         fetch(GLOBAL.BASE_URL+"users/signup/",{
             method:"POST",

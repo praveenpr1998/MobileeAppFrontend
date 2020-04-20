@@ -2,17 +2,11 @@ import 'react-native-gesture-handler';
 import React, { useState } from 'react';
 import SwitchNav from "./navigation/SwitchNavigator.js";
 
-
-
 const App = () => {
-
-
     return (
       <SwitchNav />
     );
-
 };
-
 
 export default App;
 // export default function App() {
