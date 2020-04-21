@@ -188,7 +188,6 @@ const GLOBAL = require('../../Global');
     //diplaying the cartitems of user
   displayCart(){
     return(
-
       <View style={{flex:1}}>
         {(this.state.allProducts.length!==0)?
         <FlatList
@@ -248,7 +247,7 @@ const GLOBAL = require('../../Global');
                   this.setState({allProducts:result});
                   this.totalAmount()
                 })}}   />
-              <Homeheading navigation={this.props.navigation}/>
+              <HomeHeading navigation={this.props.navigation}/>
                   {this.state.loading?<ActivityIndicator size="large" color="#0000ff" />:null}
                 <Modal isVisible={this.state.isModalVisible}>
                   <View style={styles.modalView}>
