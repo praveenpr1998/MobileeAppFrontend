@@ -82,7 +82,7 @@ export default class productsPage extends Component{
         const { selectedItems } = this.state;
       return(
         //search bar
-        <View style={SearchBarContainer}>
+        <View style={styles.SearchBarContainer}>
          <View style={{height:57}}><SearchBar
         placeholder="Search Products..."
         onChangeText={(text)=>{this.setState({searchValue:text})}}
