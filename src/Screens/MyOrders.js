@@ -8,7 +8,8 @@ import {
   Button,
   TouchableHighlight,
   Image,
-  Alert
+  Alert,
+  ActivityIndicator
 } from 'react-native';
 import {AsyncStorage} from 'react-native';
 import Modal from 'react-native-modal';
@@ -20,7 +21,8 @@ export default class Loginscreen extends Component {
     state={
         allOrders:[],
         modalDisplaydata:[],
-        isModalVisible:false
+        isModalVisible:false,
+         loading:true
     }
 
     async componentDidMount(){
@@ -28,7 +30,7 @@ export default class Loginscreen extends Component {
         .then(res => res.json())
         .then(
         (result) => {
-            this.setState({allOrders:result});
+            this.setState({allOrders:result,loading:false});
         })
     }
 
@@ -115,6 +117,7 @@ export default class Loginscreen extends Component {
                          this.setState({allOrders:result});
                      })}}   /> 
             <Homeheading navigation={this.props.navigation}/>
+              {this.state.loading?<ActivityIndicator size="large" color="#0000ff" />:null}
             {this.displayOrders()}
             <Modal isVisible={this.state.isModalVisible}>
             {this.modalData()}
