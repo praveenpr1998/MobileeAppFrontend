@@ -60,9 +60,6 @@ export default class Signupscreen extends Component {
     return (
       <View style={styles.container}>
         <View style={styles.inputContainer}>
-      {loading?<View style={styles.lottie}>
-                <ActivityIndicator size="large" color="#0000ff"/>
-              </View>:null}
         <EvilIcons name="user" size={32} style={{paddingLeft:20}} color="black" />
           <TextInput style={styles.inputs}
               placeqholder="UserName"
@@ -86,6 +83,9 @@ export default class Signupscreen extends Component {
         <TouchableHighlight style={[styles.buttonContainer, styles.loginButton]} onPress={() => this.onClickListener('login')}>
           <Text style={styles.loginText}>Signup</Text>
         </TouchableHighlight>
+         {loading?<View style={styles.loader}>
+                <ActivityIndicator size="large" color="#0000ff"/>
+              </View>:null}
         <View style={{flexDirection:'row'}}>
         <Text>Already a Customer ?</Text>
         <TouchableHighlight  onPress={() => this.props.navigation.navigate('Login')}>
@@ -142,7 +142,5 @@ const styles = StyleSheet.create({
   loginText: {
     color: GLOBAL.Styling.Colors.buttonText,
   },
-  lottie:{
-    paddingTop:150
-  }
+ loader:{}
 });
