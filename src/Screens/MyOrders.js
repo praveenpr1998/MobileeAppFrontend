@@ -36,7 +36,7 @@ export default class Loginscreen extends Component {
 
     displayOrders(){
         return(
-                <View style={{flex:1}}>
+            this.state.loading?<View style={styles.loader}><ActivityIndicator size="large" color="#0000ff" /></View>: <View style={{flex:1}}>
                      <View style={styles.orderstext}>
                          <Text style={styles.displayOrderscontainer}>Orders</Text></View>
                         <FlatList
@@ -55,6 +55,7 @@ export default class Loginscreen extends Component {
                             </View>
                         )} />
                 </View>
+            
         )
     }
 
@@ -117,7 +118,6 @@ export default class Loginscreen extends Component {
                          this.setState({allOrders:result});
                      })}}   />
             <HomeHeading navigation={this.props.navigation}/>
-              {this.state.loading?<ActivityIndicator size="large" color="#0000ff" />:null}
             {this.displayOrders()}
             <Modal isVisible={this.state.isModalVisible}>
             {this.modalData()}
@@ -226,5 +226,8 @@ cardText:{
     paddingLeft:60,
     paddingTop:10,
     fontFamily:'Nunito-Bold'
+  },
+  loader:{
+    paddingTop:250
   }
 })
