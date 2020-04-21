@@ -39,8 +39,8 @@ async componentDidMount(){
 }
 
 const styles = StyleSheet.create({
-  container:{
-    marginTop:10,width: 110, height: 98
+ container:{
+    flex:1,backgroundColor:"black",alignContent:'center',alignItems:'center'
   },
   text:{
     color:"white",fontSize:30,marginTop:0
