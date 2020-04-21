@@ -13,9 +13,9 @@ import {
 } from 'react-native';
 import {AsyncStorage} from 'react-native';
 import Modal from 'react-native-modal';
-import Homeheading from "../components/HomeHeading.js";
+import HomeHeading from "../components/HomeHeading";
 import { FlatList } from 'react-native-gesture-handler';
-const GLOBAL = require('../Global');
+const GLOBAL = require('../../Global');
 
 export default class Loginscreen extends Component {
     state={
@@ -47,9 +47,9 @@ export default class Loginscreen extends Component {
                                 <View>
                                     <Text style={styles.ordertext} onPress={()=>{this.modalDisplay(item.orderid)}}>OrderId: {item.orderid}</Text>
                                     <Text style={styles.totaltext}>TotalAmount: ₹ {(item.totalamount)/100}</Text>
-                                </View>  
+                                </View>
                                 <View style={styles.datetime}>
-                                    <Text style={styles.date}> {item.date}</Text> 
+                                    <Text style={styles.date}> {item.date}</Text>
                                     <Text style={styles.time}>{item.time}</Text>
                                 </View>
                             </View>
@@ -76,11 +76,11 @@ export default class Loginscreen extends Component {
                        <Text style={styles.totaltext}>TotalAmount: ₹ {(this.state.modalDisplaydata.totalamount)/100}</Text>
                       <Text style={styles.dateinModal}> {this.state.modalDisplaydata.date}</Text>
                     </View>
-                  <View style={{flexDirection:'row'}}> 
+                  <View style={{flexDirection:'row'}}>
                     <Text style={styles.paidby}>Paid By: {this.state.modalDisplaydata.method}</Text>
                     {(this.state.modalDisplaydata.wallet!==null)?<Text style={styles.mode}>Wallet: {this.state.modalDisplaydata.wallet}</Text>:null}
-                    {(this.state.modalDisplaydata.bank!==null)?<Text style={styles.mode}>Bank: {this.state.modalDisplaydata.bank}</Text>:null}  
-                  </View>    
+                    {(this.state.modalDisplaydata.bank!==null)?<Text style={styles.mode}>Bank: {this.state.modalDisplaydata.bank}</Text>:null}
+                  </View>
                 <FlatList
                 data={this.state.modalDisplaydata.items}
                 keyExtractor={(item)=>item.id}
@@ -90,12 +90,12 @@ export default class Loginscreen extends Component {
                             <Image
                                 style={styles.imageItem}
                                 source={{uri: item.Link}}/></View>
-                            <View >   
+                            <View >
                                 <Text style={styles.cardText}>{item.Name}</Text>
                                 <Text style={styles.priceText}>PRICE: ${item.Price}</Text>
                             </View>
                             <View style={styles.QuantityView}>
-                                <Text>Quantity:{item.Quantity}</Text>  
+                                <Text>Quantity:{item.Quantity}</Text>
                             </View>
                         </View>
                 )}
@@ -104,10 +104,10 @@ export default class Loginscreen extends Component {
             </View>
         )
     }
-    render(){ 
-        //Navigations Events is used to retrieve the added items dynamically 
-        //bcoz navigating the pages will not refresh the pages evrytime 
-        //so it is required to be called whenever we navigate to a page  
+    render(){
+        //Navigations Events is used to retrieve the added items dynamically
+        //bcoz navigating the pages will not refresh the pages evrytime
+        //so it is required to be called whenever we navigate to a page
         return(
             <View style={{flex:1}}>
                 <NavigationEvents onDidFocus={async ()=>{   fetch(GLOBAL.BASE_URL+"Orders?userid="+await AsyncStorage.getItem("userid"))
@@ -115,7 +115,7 @@ export default class Loginscreen extends Component {
                     .then(
                     (result) => {
                          this.setState({allOrders:result});
-                     })}}   /> 
+                     })}}   />
             <Homeheading navigation={this.props.navigation}/>
               {this.state.loading?<ActivityIndicator size="large" color="#0000ff" />:null}
             {this.displayOrders()}
@@ -131,41 +131,63 @@ const styles = StyleSheet.create({
 ordertext:{
     fontSize:15 ,
     fontFamily:'Nunito-Bold',
-    color:'#f78259',
+    color: GLOBAL.Styling.Colors.ordersTextLight,
     paddingLeft:12,
     paddingTop:12
 },
 QuantityView:{
-    paddingLeft:200,paddingTop:5,flexDirection:'row',position:'absolute'
+    paddingLeft:200,
+    paddingTop:5,
+    flexDirection:'row',
+    position:'absolute'
 },
 imageItem:{
-    marginTop:10,width: 60, height: 48
+    marginTop:10,
+    width: 60,
+    height: 48
 },
 modalContainer:{
-    flex: 1,marginTop:150,marginLeft:10,backgroundColor:'white',height:'50%',marginBottom:250,width:300
+    flex: 1,
+    marginTop:150,
+    marginLeft:10,
+    backgroundColor:GLOBAL.Styling.Colors.modalContainerBackground,
+    height:'50%',
+    marginBottom:250,
+    width:300
 },
 time:{
     paddingLeft:40,paddingTop:10
 },
 cardContainer:{
-    flexDirection:'row',height:60,backgroundColor:'white', borderWidth:1,borderColor: '#ddd'
+    flexDirection:'row',
+    height:60,
+    backgroundColor: GLOBAL.Styling.Colors.cardContainerBackground,
+    borderWidth:1,
+    borderColor: GLOBAL.Styling.Colors.cardContainerBorder
 },
 displayOrderscontainer:{
-    alignItems:'center',alignContent:'center'
+    alignItems:'center',
+    alignContent:'center'
 },
 ordersContainer:{
-    flexDirection:'row',height:70,marginTop:5,backgroundColor:'#fde2e2', borderWidth:1,borderColor: '#ddd'
+    flexDirection:'row',
+    height:70,
+    marginTop:5,
+    backgroundColor:'#fde2e2',
+    borderWidth:1,
+    borderColor: '#ddd'
 },
 datetime:{
-    alignItems:'center',alignContent:'center'
+    alignItems:'center',
+    alignContent:'center'
 },
 totaltext:{
     fontSize:15 ,
-    color:'#eb4559',
+    color:GLOBAL.Styling.Colors.ordersTextDark,
     paddingLeft:12,
     paddingTop:10,
     fontFamily:'Nunito-Bold'
-   
+
 },date:{
     paddingLeft:60,paddingTop:10
 },
@@ -193,14 +215,14 @@ cardText:{
   },
   paidby:{
     fontSize:15 ,
-    color:'#eb4559',
+    color: GLOBAL.Styling.Colors.ordersText,
     paddingLeft:12,
     paddingTop:10,
     fontFamily:'Nunito-Bold'
   },
   mode:{
     fontSize:15 ,
-    color:'#eb4559',
+    color: GLOBAL.Styling.Colors.ordersText,
     paddingLeft:60,
     paddingTop:10,
     fontFamily:'Nunito-Bold'

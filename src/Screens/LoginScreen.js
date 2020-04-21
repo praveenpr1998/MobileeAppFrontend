@@ -12,8 +12,8 @@ import {
 import Icon  from 'react-native-vector-icons/MaterialIcons';
 import  Entypo  from 'react-native-vector-icons/Entypo';
 import {AsyncStorage} from 'react-native';
+const GLOBAL = require('../../Global');
 import AnimatedLoader from "react-native-animated-loader";
-const GLOBAL = require('../Global');
 
 export default class Loginscreen extends Component {
   constructor(props) {
@@ -43,8 +43,8 @@ export default class Loginscreen extends Component {
       .then(res => res.json())
       .then(
       async(result) => {
-          if(result.message==="Success"){  
-            this.setState({visible: false}) 
+          if(result.message==="Success"){
+            this.setState({visible: false})
              AsyncStorage.setItem("userid",result.userid.toString());
             AsyncStorage.setItem("token",result.token);
             this.props.navigation.navigate('Homee');
@@ -74,7 +74,7 @@ export default class Loginscreen extends Component {
               keyboardType="email-address"
               underlineColorAndroid='transparent'
               onChangeText={(email) => this.setState({email})}/>
-        </View>      
+        </View>
         <View style={styles.inputContainer}>
         <Entypo name="key" size={32} style={{paddingLeft:20}} color="black" />
           <TextInput style={styles.inputs}
@@ -98,11 +98,11 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#DCDCDC',
+    backgroundColor: GLOBAL.Styling.Colors.containerBackground,
   },
   inputContainer: {
-      borderBottomColor: '#F5FCFF',
-      backgroundColor: '#FFFFFF',
+      borderBottomColor: GLOBAL.Styling.Colors.inputContainerBorder,
+      backgroundColor: GLOBAL.Styling.Colors.inputContainerBackground,
       borderRadius:30,
       borderBottomWidth: 1,
       width:250,
@@ -114,7 +114,7 @@ const styles = StyleSheet.create({
   inputs:{
       height:45,
       marginLeft:16,
-      borderBottomColor: '#FFFFFF',
+      borderBottomColor: GLOBAL.Styling.Colors.textInputBorder,
       flex:1,
   },
   inputIcon:{
@@ -138,11 +138,11 @@ const styles = StyleSheet.create({
   loginText: {
     color: 'white',
   },
-  
+
   lottie: {
     width: 100,
     height: 100,
     marginTop:150,
-    
+
   }
-}); 
+});

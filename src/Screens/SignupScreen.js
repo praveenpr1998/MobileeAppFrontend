@@ -13,7 +13,7 @@ import  MaterialIcons  from 'react-native-vector-icons/MaterialIcons';
 import  Entypo  from 'react-native-vector-icons/Entypo';
 import  EvilIcons  from 'react-native-vector-icons/EvilIcons';
 import {AsyncStorage} from 'react-native';
-const GLOBAL = require('../Global');
+const GLOBAL = require('../../Global');
 
 export default class Signupscreen extends Component {
   constructor(props) {
@@ -24,7 +24,7 @@ export default class Signupscreen extends Component {
       username:''
     }
   }
- 
+
   onClickListener = (viewId) => {
     let emailRegEx = /^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z]+$/;
     if(this.state.email === '' || this.state.password === '') {
@@ -46,10 +46,10 @@ export default class Signupscreen extends Component {
         }
         else if("Exists"){
           alert("Email Already exists");
-        } 
-            })  
+        }
+            })
           }
-  }
+  };
 
   render() {
     return (
@@ -94,11 +94,11 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#DCDCDC',
+    backgroundColor: GLOBAL.Styling.Colors.containerBackground,
   },
   inputContainer: {
-      borderBottomColor: '#F5FCFF',
-      backgroundColor: '#FFFFFF',
+      borderBottomColor: GLOBAL.Styling.Colors.inputContainerBorder,
+      backgroundColor: GLOBAL.Styling.Colors.inputContainerBackground,
       borderRadius:30,
       borderBottomWidth: 1,
       width:250,
@@ -110,7 +110,7 @@ const styles = StyleSheet.create({
   inputs:{
       height:45,
       marginLeft:16,
-      borderBottomColor: '#FFFFFF',
+      borderBottomColor: GLOBAL.Styling.Colors.textInputBorder,
       flex:1,
   },
   inputIcon:{
@@ -129,9 +129,9 @@ const styles = StyleSheet.create({
     borderRadius:30,
   },
   loginButton: {
-    backgroundColor: "black",
+    backgroundColor: GLOBAL.Styling.Colors.buttonBackground,
   },
   loginText: {
-    color: 'white',
+    color: GLOBAL.Styling.Colors.buttonText,
   }
 });

@@ -14,12 +14,12 @@ async componentDidMount(){
         this.props.navigation.navigate('Login')
       }
         else{
-          this.props.navigation.navigate('Homee')  
+          this.props.navigation.navigate('Homee')
           this.setState({visible:false})        }
       },2*1000
     );
   }
-  
+
   render() {
     return (
       <View style={styles.container}>
@@ -43,15 +43,19 @@ const styles = StyleSheet.create({
     flex:1,backgroundColor:"black",alignContent:'center',alignItems:'center'
   },
   text:{
-    color:"white",fontSize:30,marginTop:0
+      color:"white",
+      fontSize:30,
+      marginTop:0
   },
   image:{
-    width: 150, height: 158,marginTop:250
+      width: 150,
+      height: 158,
+      marginTop:250
   },
-    lottie: {
-    width: 100,
-    height: 100,
-    marginTop:150,
-    
+  lottie: {
+      width: 100,
+      height: 100,
+      marginTop:150,
+
   }
 });

@@ -13,14 +13,14 @@ import {
     ActivityIndicator,
     Alert
   } from 'react-native';
-  import 'react-native-gesture-handler';
-  import MultiSelect from 'react-native-multiple-select';
-  import { Card } from 'react-native-elements';
-  import {AsyncStorage} from 'react-native';
-  import { SearchBar } from 'react-native-elements';
+import 'react-native-gesture-handler';
+import MultiSelect from 'react-native-multiple-select';
+import { Card } from 'react-native-elements';
+import {AsyncStorage} from 'react-native';
+import { SearchBar } from 'react-native-elements';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import Homeheading from "../components/HomeHeading.js";
-const GLOBAL = require('../Global');
+import HomeHeading from "../components/HomeHeading";
+const GLOBAL = require('../../Global');
 
 export default class productsPage extends Component{
     state={
@@ -31,14 +31,14 @@ export default class productsPage extends Component{
         selectedItems: [],
         loading:true
     }
-  
+
   onSelectedItemsChange = selectedItems => {
     this.setState({allProducts:null})
     this.setState({ selectedItems });
   };
- 
+
     componentDidMount(){
-     
+
         fetch(GLOBAL.BASE_URL+"products/")
         .then(res => res.json())
         .then(
@@ -48,8 +48,8 @@ export default class productsPage extends Component{
                //allCat- unique categories
               const allCat = [...new Set(this.state.allProducts.map(data => data.category))];
                 this.setState({selectedItems:allCat})
-             //changing the selected categories when the user clicks 
-             //a category in multiselect checkbox        
+             //changing the selected categories when the user clicks
+             //a category in multiselect checkbox
             let uniqueObject=[];
             let newArray=[];
             let objTitle=[];
@@ -57,11 +57,11 @@ export default class productsPage extends Component{
                   objTitle=this.state.allProducts[i]['category'];
                   uniqueObject[objTitle]=this.state.allProducts[i];
                 }
-                 for (i in uniqueObject) { 
-                newArray.push(uniqueObject[i]); 
+                 for (let i in uniqueObject) {
+                newArray.push(uniqueObject[i]);
             }
-            this.setState({filteredCat:newArray})    
-            
+            this.setState({filteredCat:newArray})
+
           })
     }
 
@@ -77,7 +77,7 @@ export default class productsPage extends Component{
     .then(
      (result) => {
        if(result.message !== "Success"){
-        alert("Unauthorized Usage Need to Login again");   
+        alert("Unauthorized Usage Need to Login again");
        }
      });
     }
@@ -115,7 +115,7 @@ export default class productsPage extends Component{
             submitButtonColor="#CCC"
             submitButtonText="Apply"
           />
-        </View>        
+        </View>
       )
     }
 
@@ -136,16 +136,16 @@ export default class productsPage extends Component{
             {this.state.loading?<ActivityIndicator size="large" color="#0000ff" />:null}
         <View style={{flex:1}}>
           {finalData.length!==0?
-          <FlatList numColumns={2} 
-            keyExtractor={(item)=>item.id} 
-            data={finalData} 
+          <FlatList numColumns={2}
+            keyExtractor={(item)=>item.id}
+            data={finalData}
             renderItem={({item})=>(
                   <Card style={styles.card}>
                       <View style={{paddingLeft:10}}>
                         <Image
                           style={styles.itemImages}
                           source={{uri: item.link}}/></View>
-                            <View style={styles.textcontent}>   
+                            <View style={styles.textcontent}>
                                 <Text style={styles.cardText}>{item.name}</Text>
                                 <Text style={styles.priceText}>RS: {item.price}</Text>
                             </View>
@@ -154,7 +154,7 @@ export default class productsPage extends Component{
                         <Button title='add'color="red" onPress={()=>{this.addItems(item)}}/></TouchableOpacity></View>
                   </Card>
           )} />: <Text>No Items to Display</Text>}
-        </View>     
+        </View>
       </View>
       );
     }
@@ -182,7 +182,8 @@ const styles = StyleSheet.create({
       width: 110, height: 98
     },
     SearchBarContainer:{
-        paddingTop:10,backgroundColor:"#d3f4ff"
+        paddingTop:10,
+        backgroundColor: GLOBAL.Styling.Colors.searchBarBackground,
     },
     textcontent:{
       alignItems:'center',
@@ -201,6 +202,6 @@ const styles = StyleSheet.create({
     lottie: {
       width: 100,
       height: 50,
-      marginTop:50,  
+      marginTop:50,
     }
   })
