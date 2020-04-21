@@ -12,6 +12,7 @@ import {
 import Icon  from 'react-native-vector-icons/MaterialIcons';
 import  Entypo  from 'react-native-vector-icons/Entypo';
 import {AsyncStorage} from 'react-native';
+import AnimatedLoader from "react-native-animated-loader";
 const GLOBAL = require('../Global');
 
 export default class Loginscreen extends Component {
@@ -20,6 +21,7 @@ export default class Loginscreen extends Component {
     this.state = {
       email   : '',
       password: '',
+      visible:false
     }
   }
 
@@ -32,14 +34,17 @@ export default class Loginscreen extends Component {
     } else if(this.state.password.length < 4) {
         alert('Password must contain atleast 4 characters');
     } else {
-    fetch(GLOBAL.BASE_URL+"users/login/",{
+
+     this.setState({ visible: true }, () => {
+       fetch(GLOBAL.BASE_URL+"users/login/",{
       method:"POST",
       body:JSON.stringify({email:this.state.email,password:this.state.password}),
       })
       .then(res => res.json())
       .then(
       async(result) => {
-          if(result.message==="Success"){   
+          if(result.message==="Success"){  
+            this.setState({visible: false}) 
              AsyncStorage.setItem("userid",result.userid.toString());
             AsyncStorage.setItem("token",result.token);
             this.props.navigation.navigate('Homee');
@@ -48,12 +53,20 @@ export default class Loginscreen extends Component {
             alert("Invalid Username and password");
           }
             })
+          })
           }
   }
 
   render() {
     return (
       <View style={styles.container}>
+        <AnimatedLoader
+        visible={this.state.visible}
+        overlayColor="rgba(255,255,255,0.75)"
+        source={require("../assets/11625-typing-indicator.json")}
+        animationStyle={styles.lottie}
+        speed={1}
+      />
         <View style={styles.inputContainer}>
         <Icon name="email" size={32} style={{paddingLeft:20}} color="black" />
           <TextInput style={styles.inputs}
@@ -124,5 +137,12 @@ const styles = StyleSheet.create({
   },
   loginText: {
     color: 'white',
+  },
+  
+  lottie: {
+    width: 100,
+    height: 100,
+    marginTop:150,
+    
   }
 }); 
