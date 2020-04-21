@@ -61,7 +61,7 @@ export default class Loginscreen extends Component {
   render() {
     return (  
       <View style={styles.container}>
-      {visible?<ActivityIndicator size="large" color="#0000ff" />:null}
+      {this.state.visible?<ActivityIndicator size="large" color="#0000ff" />:null}
         <View style={styles.inputContainer}>
         <Icon name="email" size={32} style={{paddingLeft:20}} color="black" />
           <TextInput style={styles.inputs}
