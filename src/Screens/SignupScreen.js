@@ -7,7 +7,8 @@ import {
   Button,
   TouchableHighlight,
   Image,
-  Alert
+  Alert,
+  ActivityIndicator
 } from 'react-native';
 import  MaterialIcons  from 'react-native-vector-icons/MaterialIcons';
 import  Entypo  from 'react-native-vector-icons/Entypo';
@@ -21,7 +22,8 @@ export default class Signupscreen extends Component {
     this.state = {
       email   : '',
       password: '',
-      username:''
+      username:'',
+      loading:false
     }
   }
 
@@ -34,7 +36,8 @@ export default class Signupscreen extends Component {
     } else if(this.state.password.length < 4) {
         alert('Password must contain atleast 4 characters');
     } else {
-    fetch(GLOBAL.BASE_URL+"users/signup/",{
+     this.setState({ visible: true }, () => {
+       fetch(GLOBAL.BASE_URL+"users/signup/",{
       method:"POST",
       body:JSON.stringify({email:this.state.email,password:this.state.password,name:this.state.username}),
       })
@@ -42,12 +45,14 @@ export default class Signupscreen extends Component {
       .then(
       async(result) => {
         if(result.message==="Success"){
+          this.setState({visible: false})
           this.props.navigation.navigate('Homee');
         }
         else if("Exists"){
           alert("Email Already exists");
         }
             })
+       })
           }
   };
 
@@ -55,9 +60,12 @@ export default class Signupscreen extends Component {
     return (
       <View style={styles.container}>
         <View style={styles.inputContainer}>
+      {loading?<View style={styles.lottie}>
+                <ActivityIndicator size="large" color="#0000ff"/>
+              </View>:null}
         <EvilIcons name="user" size={32} style={{paddingLeft:20}} color="black" />
           <TextInput style={styles.inputs}
-              placeholder="UserName"
+              placeqholder="UserName"
               onChangeText={(username) => this.setState({username})}/>
         </View>
         <View style={styles.inputContainer}>
@@ -133,5 +141,8 @@ const styles = StyleSheet.create({
   },
   loginText: {
     color: GLOBAL.Styling.Colors.buttonText,
+  },
+  lottie:{
+    paddingTop:150
   }
 });
