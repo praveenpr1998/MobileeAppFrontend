@@ -19,7 +19,7 @@ import {
   import {AsyncStorage} from 'react-native';
   import { SearchBar } from 'react-native-elements';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import Homeheading from "../components/homeHeading.js";
+import Homeheading from "../components/HomeHeading.js";
 const GLOBAL = require('../Global');
 
 export default class productsPage extends Component{
