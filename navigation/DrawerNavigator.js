@@ -16,7 +16,7 @@ const GLOBAL = require('../Global');
 
 const resetAction = StackActions.reset({
   index: 0,
-  actions: [NavigationActions.navigate({ routeName: 'LoginScreen' })],
+  actions: [NavigationActions.navigate({ routeName: 'Login' })],
 });
 
 //let user -- to store the username for  displaying in drawer navigator
