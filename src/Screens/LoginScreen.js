@@ -7,7 +7,8 @@ import {
   Button,
   TouchableHighlight,
   Image,
-  Alert
+  Alert,
+  ActivityIndicator
 } from 'react-native';
 import Icon  from 'react-native-vector-icons/MaterialIcons';
 import  Entypo  from 'react-native-vector-icons/Entypo';
@@ -58,15 +59,9 @@ export default class Loginscreen extends Component {
   }
 
   render() {
-    return (
+    return (  
       <View style={styles.container}>
-        <AnimatedLoader
-        visible={this.state.visible}
-        overlayColor="rgba(255,255,255,0.75)"
-        source={require("../assets/11625-typing-indicator.json")}
-        animationStyle={styles.lottie}
-        speed={1}
-      />
+      {visible?<ActivityIndicator size="large" color="#0000ff" />:null}
         <View style={styles.inputContainer}>
         <Icon name="email" size={32} style={{paddingLeft:20}} color="black" />
           <TextInput style={styles.inputs}
