@@ -10,6 +10,7 @@ import {
     ScrollView,
     TouchableHighlight,
     Image,
+    ActivityIndicator,
     Alert
   } from 'react-native';
   import 'react-native-gesture-handler';
@@ -27,7 +28,8 @@ export default class productsPage extends Component{
         allProducts1:[],
         filteredCat:[],
         searchValue:"",
-        selectedItems: []
+        selectedItems: [],
+        loading:true
     }
   
   onSelectedItemsChange = selectedItems => {
@@ -36,12 +38,13 @@ export default class productsPage extends Component{
   };
  
     componentDidMount(){
-    fetch(GLOBAL.BASE_URL+"products/")
+     
+        fetch(GLOBAL.BASE_URL+"products/")
         .then(res => res.json())
         .then(
         (result) => {
           //allProducts1 -- a copy of allProducts to avoid errors while filtering
-               this.setState({allProducts:result,allProducts1:result});
+               this.setState({allProducts:result,allProducts1:result,loading:false});
                //allCat- unique categories
               const allCat = [...new Set(this.state.allProducts.map(data => data.category))];
                 this.setState({selectedItems:allCat})
@@ -58,7 +61,8 @@ export default class productsPage extends Component{
                 newArray.push(uniqueObject[i]); 
             }
             this.setState({filteredCat:newArray})    
-            })
+            
+          })
     }
 
     async addItems(e){
@@ -83,12 +87,14 @@ export default class productsPage extends Component{
       return(
         //search bar
         <View style={styles.SearchBarContainer}>
-         <View style={{height:57}}><SearchBar
+         <View style={{height:57}}>
+           <SearchBar
         placeholder="Search Products..."
         onChangeText={(text)=>{this.setState({searchValue:text})}}
         value={this.state.searchValue}
         cancelIcon={true}
-      /></View>
+          />
+        </View>
          <MultiSelect
             hideTags
             items={this.state.filteredCat}
@@ -127,7 +133,9 @@ export default class productsPage extends Component{
         <View style={{flex:1}}>
           <Homeheading navigation={this.props.navigation}/>
             {this.displayCategories()}
+            {this.state.loading?<ActivityIndicator size="large" color="#0000ff" />:null}
         <View style={{flex:1}}>
+          {finalData.length!==0?
           <FlatList numColumns={2} 
             keyExtractor={(item)=>item.id} 
             data={finalData} 
@@ -145,7 +153,7 @@ export default class productsPage extends Component{
                         <TouchableOpacity style={styles.button}>
                         <Button title='add'color="red" onPress={()=>{this.addItems(item)}}/></TouchableOpacity></View>
                   </Card>
-          )} />
+          )} />: <Text>No Items to Display</Text>}
         </View>     
       </View>
       );
@@ -189,5 +197,10 @@ const styles = StyleSheet.create({
       alignContent:'center',
       marginLeft:23,
     width:70
+    },
+    lottie: {
+      width: 100,
+      height: 50,
+      marginTop:50,  
     }
   })
