@@ -14,7 +14,8 @@ import {
     TouchableOpacity,
     Image,
     Alert,
-    TouchableOpacityBase
+    TouchableOpacityBase,
+    ActivityIndicator
   } from 'react-native';
 import  Ionicons  from 'react-native-vector-icons/Ionicons';
 import  AntDesign  from 'react-native-vector-icons/AntDesign';
@@ -31,6 +32,7 @@ const GLOBAL = require('../../Global');
           allData:[],
           allProducts: [],
           totalAmount:"0",
+            loading:true
         }
     }
 
@@ -97,7 +99,7 @@ const GLOBAL = require('../../Global');
    .then(
      (result) => {
 
-       this.setState({allProducts:result});
+       this.setState({allProducts:result,loading:false});
        this.totalAmount()
      })
      fetch(GLOBAL.BASE_URL+"products/")
@@ -247,6 +249,7 @@ const GLOBAL = require('../../Global');
                   this.totalAmount()
                 })}}   />
               <Homeheading navigation={this.props.navigation}/>
+                  {this.state.loading?<ActivityIndicator size="large" color="#0000ff" />:null}
                 <Modal isVisible={this.state.isModalVisible}>
                   <View style={styles.modalView}>
                     <Image
