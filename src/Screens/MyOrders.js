@@ -116,7 +116,7 @@ export default class Loginscreen extends Component {
                     (result) => {
                          this.setState({allOrders:result});
                      })}}   />
-            <Homeheading navigation={this.props.navigation}/>
+            <HomeHeading navigation={this.props.navigation}/>
               {this.state.loading?<ActivityIndicator size="large" color="#0000ff" />:null}
             {this.displayOrders()}
             <Modal isVisible={this.state.isModalVisible}>
