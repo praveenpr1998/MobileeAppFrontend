@@ -188,8 +188,9 @@ const GLOBAL = require('../../Global');
     //diplaying the cartitems of user
   displayCart(){
     return(
+
       <View style={{flex:1}}>
-        {(this.state.allProducts.length!==0)?
+         {this.state.loading?<View style={styles.loader}><ActivityIndicator size="large" color="#0000ff" /></View>:(this.state.allProducts.length!==0)?
         <FlatList
           data={this.state.allProducts}
           keyExtractor={(item)=>item.id}
@@ -248,9 +249,9 @@ const GLOBAL = require('../../Global');
                   this.totalAmount()
                 })}}   />
               <HomeHeading navigation={this.props.navigation}/>
-                  {this.state.loading?<ActivityIndicator size="large" color="#0000ff" />:null}
                 <Modal isVisible={this.state.isModalVisible}>
                   <View style={styles.modalView}>
+                    
                     <Image
                       style={styles.modalImage}
                       source={{uri:"https://graphicriver.img.customer.envatousercontent.com/files/270440720/CartoonDogPointer%20p.jpg?auto=compress%2Cformat&q=80&fit=crop&crop=top&max-h=8000&max-w=590&s=d7ccf47eef9f9a8f679c134cc70bffa5"}} />
@@ -352,5 +353,8 @@ const GLOBAL = require('../../Global');
         backgroundColor:GLOBAL.Styling.Colors.displayViewboxBackground,
         borderWidth:1,
         borderColor: '#ddd'
+    },
+    loader:{
+      paddingTop:250
     }
   });
