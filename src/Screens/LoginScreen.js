@@ -61,7 +61,6 @@ export default class Loginscreen extends Component {
   render() {
     return (  
       <View style={styles.container}>
-      {this.state.visible?<ActivityIndicator size="large" color="#0000ff" />:null}
         <View style={styles.inputContainer}>
         <Icon name="email" size={32} style={{paddingLeft:20}} color="black" />
           <TextInput style={styles.inputs}
@@ -80,6 +79,7 @@ export default class Loginscreen extends Component {
         <TouchableHighlight style={[styles.buttonContainer, styles.loginButton]} onPress={() => this.onClickListener('login')}>
           <Text style={styles.loginText}>Login</Text>
         </TouchableHighlight>
+         {this.state.visible?<ActivityIndicator size="large" color="#0000ff" />:null}
         <TouchableHighlight style={styles.buttonContainer} onPress={() => this.props.navigation.navigate('Signup')}>
             <Text>Register</Text>
         </TouchableHighlight>
@@ -133,11 +133,5 @@ const styles = StyleSheet.create({
   loginText: {
     color: 'white',
   },
-
-  lottie: {
-    width: 100,
-    height: 100,
-    marginTop:150,
-
-  }
+  loader:{}
 });
