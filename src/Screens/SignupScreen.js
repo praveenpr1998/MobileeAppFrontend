@@ -23,7 +23,7 @@ export default class Signupscreen extends Component {
       email   : '',
       password: '',
       username:'',
-      loading:false
+      visible:false
     }
   }
 
@@ -83,7 +83,7 @@ export default class Signupscreen extends Component {
         <TouchableHighlight style={[styles.buttonContainer, styles.loginButton]} onPress={() => this.onClickListener('login')}>
           <Text style={styles.loginText}>Signup</Text>
         </TouchableHighlight>
-         {loading?<View style={styles.loader}>
+         {this.state.visible?<View style={styles.loader}>
                 <ActivityIndicator size="large" color="#0000ff"/>
               </View>:null}
         <View style={{flexDirection:'row'}}>
