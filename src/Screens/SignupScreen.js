@@ -62,7 +62,7 @@ export default class Signupscreen extends Component {
         <View style={styles.inputContainer}>
         <EvilIcons name="user" size={32} style={{paddingLeft:20}} color="black" />
           <TextInput style={styles.inputs}
-              placeqholder="UserName"
+              placeholder="UserName"
               onChangeText={(username) => this.setState({username})}/>
         </View>
         <View style={styles.inputContainer}>
