@@ -153,7 +153,7 @@ export default class productsPage extends Component{
                         <TouchableOpacity style={styles.button}>
                         <Button title='add'color="red" onPress={()=>{this.addItems(item)}}/></TouchableOpacity></View>
                   </Card>
-          )} />: <Text>No Items to Display</Text>}
+          )} />:null}
         </View>
       </View>
       );
