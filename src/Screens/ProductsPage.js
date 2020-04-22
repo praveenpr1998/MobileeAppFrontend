@@ -131,7 +131,7 @@ export default class productsPage extends Component{
 
       return (
         <View style={{flex:1}}>
-          <Homeheading navigation={this.props.navigation}/>
+          <HomeHeading navigation={this.props.navigation}/>
             {this.displayCategories()}
             {this.state.loading?<ActivityIndicator size="large" color="#0000ff" />:null}
         <View style={{flex:1}}>
